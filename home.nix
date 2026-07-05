@@ -24,9 +24,7 @@ wlogout
     firefox-devedition
     grim
     htop
-    hypridle
     hyprlauncher
-    hyprlock
     kdePackages.kate
     kitty
     neovim
@@ -39,7 +37,22 @@ wlogout
     yazi
     zathura
     antigravity
+
+    # Fonts for status bar icons and emoji
+    nerd-fonts.jetbrains-mono
+    noto-fonts-color-emoji
+    rofi
+    rofi-bluetooth
+    networkmanager_dmenu
   ];
+
+  fonts.fontconfig.enable = true;
+
+  home.activation.rebuildKDECache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    export XDG_MENU_PREFIX=lxde-
+    $DRY_RUN_CMD ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
+  '';
+
   programs.home-manager.enable = true;
 
 }

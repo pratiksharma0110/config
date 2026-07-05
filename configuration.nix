@@ -135,11 +135,29 @@ programs.hyprland = {
     };
   };
 
+  xdg.menus.enable = true;
+
+  security.polkit.enable = true;
+
   environment.systemPackages = with pkgs; [
     # keep minimal system-level tools here if needed
     git
     hyprpaper
+    kdePackages.dolphin
+    kdePackages.kservice
+    kdePackages.polkit-kde-agent-1
+    (writeShellScriptBin "nix-update" "sudo nixos-rebuild switch --flake /etc/nixos#nixOS")
   ];
+
+  environment.sessionVariables = {
+    XDG_MENU_PREFIX = "lxde-";
+    XDG_CURRENT_DESKTOP = "KDE";
+  };
+
+  environment.etc."xdg/kdeglobals".text = ''
+    [General]
+    TerminalApplication=kitty
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -45,7 +45,8 @@ local browser     = "firefox"
 --
  hl.on("hyprland.start", function () 
 hl.exec_cmd("hyprpaper")
-hl.exec_cmd("waybar")
+hl.exec_cmd("ashell")
+hl.exec_cmd("polkit-kde-authentication-agent-1")
    --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
 end)
@@ -309,6 +310,8 @@ hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl set 5%+"),  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })

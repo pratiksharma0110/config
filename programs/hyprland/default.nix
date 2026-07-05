@@ -3,14 +3,16 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
   };
 
   xdg.configFile."hypr/hyprland.lua".source = ./config/hyprland.lua;
+  xdg.configFile."hypr/hyprlock.conf".source = ./config/hyprlock.conf;
 
   home.packages = with pkgs; [
     pavucontrol
     wl-screenrec
-    swww
+    awww
     wl-clipboard
     cliphist
     jq
@@ -25,7 +27,31 @@
     lm_sensors
     bc
     imagemagick
+    hyprlock
   ];
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "hyprlock";
+        unlock_cmd = "killall -SIGUSR2 hyprlock";
+        before_sleep_cmd = "hyprlock";
+        after_sleep_cmd = "";
+      };
+      listener = [
+        {
+          timeout = 60;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 600;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 }
