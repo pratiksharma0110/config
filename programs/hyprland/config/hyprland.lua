@@ -45,10 +45,9 @@ local browser     = "firefox"
 --
  hl.on("hyprland.start", function () 
 hl.exec_cmd("hyprpaper")
-hl.exec_cmd("ashell")
+hl.exec_cmd("waybar")
    --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
---   hl.exec_cmd("waybar & hyprpaper & firefox")
 end)
 
 
@@ -60,6 +59,8 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("KDE_SESSION_VERSION", "6")
 
 
 -----------------------

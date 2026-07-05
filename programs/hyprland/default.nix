@@ -8,7 +8,6 @@
   xdg.configFile."hypr/hyprland.lua".source = ./config/hyprland.lua;
 
   home.packages = with pkgs; [
-    rofi
     pavucontrol
     wl-screenrec
     swww

@@ -19,11 +19,12 @@
   
   boot.loader.systemd-boot.enable = false;
 
+  boot.loader.timeout = 5;
+
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
     device = "nodev";
-    timeout = 5;
   };
 
   boot.loader.efi.canTouchEfiVariables = true;

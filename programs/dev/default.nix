@@ -1,28 +1,34 @@
 { pkgs, ... }:
 
+let
+  secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else {};
+in
 {
   home.packages = with pkgs; [
-+
+    # C / C++
     gcc
     gnumake
     cmake
     gdb
 
-
+    # Node.js / JavaScript
     nodejs
-    npm
+    pnpm
+    yarn
     typescript
 
-    
+    # Go
     go
 
-    
+    # Dart
     dart
   ];
 
   programs.git = {
     enable = true;
-    userName = ""; 
-    userEmail = "";
+    settings = {
+      user.name = secrets.GIT_USER_NAME or "";
+      user.email = secrets.GIT_USER_EMAIL or "";
+    };
   };
 }

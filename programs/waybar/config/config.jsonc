@@ -1,0 +1,40 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["mpris"],
+  "modules-right": ["cpu", "memory", "temperature", "tray", "clock", "custom/power"],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}"
+  },
+
+  "hyprland/window": {
+    "max-length": 100,
+    "separate-outputs": true
+  },
+
+  "mpris": {
+    "format": "{player_icon} {title}",
+    "max-length": 50,
+    "player-icons": {
+      "spotify": "",
+      "default": ""
+    }
+  },
+
+  "cpu": { "format": "CPU {usage}%", "interval": 5 },
+  "memory": { "format": "RAM {percentage}%", "interval": 5 },
+  "temperature": { "format": "{icon} {temperatureC}°C", "interval": 5 },
+  "clock": { "format": "{:%a %d %b %R}", "interval": 60 },
+  "tray": { "spacing": 8 },
+
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "wlogout"
+  }
+}

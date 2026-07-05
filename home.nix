@@ -17,7 +17,8 @@ in
   home.homeDirectory = "/home/protikbruhh";
   home.stateVersion = "26.05";
   home.packages = with pkgs; [
-    brightnessctl
+
+brightnessctl
     discord
     firefox-devedition
     grim
@@ -36,6 +37,7 @@ in
     wl-clipboard
     yazi
     zathura
+    antigravity
   ];
   programs.home-manager.enable = true;
 
