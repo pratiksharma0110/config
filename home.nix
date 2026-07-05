@@ -19,6 +19,7 @@ in
   home.packages = with pkgs; [
 
 brightnessctl
+wlogout
     discord
     firefox-devedition
     grim
