@@ -49,7 +49,6 @@ wlogout
   fonts.fontconfig.enable = true;
 
   home.activation.rebuildKDECache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    export XDG_MENU_PREFIX=lxde-
     $DRY_RUN_CMD ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
   '';
 

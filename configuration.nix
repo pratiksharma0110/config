@@ -150,7 +150,6 @@ programs.hyprland = {
   ];
 
   environment.sessionVariables = {
-    XDG_MENU_PREFIX = "lxde-";
     XDG_CURRENT_DESKTOP = "KDE";
   };
 

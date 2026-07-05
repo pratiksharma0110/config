@@ -10,7 +10,8 @@
   xdg.configFile."hypr/hyprlock.conf".source = ./config/hyprlock.conf;
 
   home.packages = with pkgs; [
-    pavucontrol
+hypridle
+pavucontrol
     wl-screenrec
     awww
     wl-clipboard

@@ -17,7 +17,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "preferred",
+    mode     = "1920x1080@165",
     position = "auto",
     scale    = "1",
 })
@@ -30,7 +30,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local menu        = "rofi -show drun"
 local browser     = "firefox"
 
 
