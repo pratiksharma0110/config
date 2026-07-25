@@ -21,18 +21,28 @@ PanelWindow {
         spacing: 6
 
         Repeater {
-            model: 10
+            model: Hyprland.workspaces.values.filter(w =>
+                    w.id <= 10 && (
+                    w.id === Hyprland.focusedWorkspace?.id ||
+                   w.lastIpcObject?.windows > 0 ||
+                   w.windows > 0
+            )
+    )
 
-            Text {
-                property var ws: Hyprland.workspaces.values.find(w => w.id === index + 1)
-                property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
-                property bool hasWindows: ws !== undefined
 
-                text: (index + 1).toString()
-                color: isActive ? Colors.background : (hasWindows ? Colors.blue : Colors.muted)
-                font { family: Colors.fontFamily; pixelSize: Colors.fontSize; bold: isActive }
 
-                Rectangle {
+
+    Text {
+
+
+       required property var modelData
+
+        property var ws: modelData
+        property bool isActive: ws.id === Hyprland.focusedWorkspace?.id
+
+        text: ws.id.toString()
+        color: isActive ? Colors.background : Colors.muted
+                            Rectangle {
                     visible: parent.isActive
                     anchors.centerIn: parent
                     width: parent.implicitWidth + 8
