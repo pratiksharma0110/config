@@ -17,7 +17,19 @@ in
   home.homeDirectory = "/home/protikbruhh";
   home.stateVersion = "26.05";
 
-home.packages = with pkgs; [
+  home.packages = with pkgs; [
+    (writeShellScriptBin "start" ''
+      echo "Select window manager:"
+      echo "  1) Hyprland"
+      echo "  2) Plasma 6"
+      read -rp "Choice [1-2]: " choice
+      case "$choice" in
+        1) exec start-hyprland ;;
+        2) exec startplasma-wayland ;;
+        *) echo "Invalid choice"; exit 1 ;;
+      esac
+    '')
+  ] ++ (with pkgs; [
     spotify
     steam-run
     mesa-demos
@@ -31,7 +43,6 @@ home.packages = with pkgs; [
     hyprlauncher
     kitty
     neovim
-    niri
     opencode
     ripgrep
     slurp
@@ -43,7 +54,7 @@ home.packages = with pkgs; [
     antigravity
     fd
     brave
-  ];
+  ]);
 
 
 
@@ -64,5 +75,11 @@ home.packages = with pkgs; [
   };
 
   programs.home-manager.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
+  };
 
 }

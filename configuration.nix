@@ -64,20 +64,9 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable greetd display manager for Hyprland
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
-
-  # KDE Plasma desktop - required for Dolphin/Okular to work (KIO workers, MIME handling)
-  # Plasma shell won't start on Hyprland session, only libraries are available
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = false;
+  services.xserver.displayManager.lightdm.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -127,7 +116,6 @@ programs.hyprland = {
   
   };
 
-  programs.niri.enable = true;
 
   programs.zsh.enable = true;
 
@@ -184,6 +172,7 @@ services.blueman.enable = true;
   environment.systemPackages = with pkgs; [
     # keep minimal system-level tools here if needed
     kdePackages.kservice
+    bibata-cursors
   ];
 
   environment.sessionVariables = {
