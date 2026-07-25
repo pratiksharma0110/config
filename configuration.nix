@@ -226,4 +226,8 @@ jre
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
 
+  system.activationScripts.cleanHomeManagerBackups = lib.mkAfter ''
+    find /home -name "*..backup" -type f -delete 2>/dev/null || true
+  '';
+
 }
