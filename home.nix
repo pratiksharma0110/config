@@ -16,8 +16,17 @@ in
   home.username = "protikbruhh";
   home.homeDirectory = "/home/protikbruhh";
   home.stateVersion = "26.05";
-  home.packages = with pkgs; [
 
+services.kdeconnect.enable = true;
+
+
+home.packages = with pkgs; [
+spotify
+niri
+steam-run
+mesa-demos
+postman
+btop
 brightnessctl
 wlogout
     discord
@@ -37,14 +46,18 @@ wlogout
     yazi
     zathura
     antigravity
-
+fd
     # Fonts for status bar icons and emoji
     nerd-fonts.jetbrains-mono
     noto-fonts-color-emoji
     rofi
     rofi-bluetooth
     networkmanager_dmenu
-  ];
+brave
+
+];
+
+
 
   fonts.fontconfig.enable = true;
 

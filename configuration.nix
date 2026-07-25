@@ -1,3 +1,4 @@
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -32,6 +33,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-old";
+  };
+
   networking.hostName = "nixOS"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -41,6 +48,11 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
+  networking.firewall.allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+  networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kathmandu";
@@ -115,21 +127,28 @@ programs.hyprland = {
     enable32Bit = true;
   };
 
+  hardware.bluetooth = {
+  enable = true;
+  powerOnBoot = true;
+};
+
+
+
+
+services.blueman.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      sync.enable = true;
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
     };
@@ -139,8 +158,23 @@ programs.hyprland = {
 
   security.polkit.enable = true;
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    noto-fonts-color-emoji
+  ];
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "JetBrainsMono Nerd Font" ];
+    emoji = [ "Noto Color Emoji" ];
+  };
+
   environment.systemPackages = with pkgs; [
     # keep minimal system-level tools here if needed
+    
+  qt6.qtdeclarative
+    jdk21
+jre
+    unzip
     git
     hyprpaper
     kdePackages.dolphin
@@ -151,7 +185,14 @@ programs.hyprland = {
 
   environment.sessionVariables = {
     XDG_CURRENT_DESKTOP = "KDE";
+    XDG_MENU_PREFIX = "plasma-";
   };
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+
 
   environment.etc."xdg/kdeglobals".text = ''
     [General]

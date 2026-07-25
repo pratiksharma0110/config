@@ -22,7 +22,9 @@ in
 
     # Dart
     dart
-  ];
+python3
+
+];
 
   programs.git = {
     enable = true;

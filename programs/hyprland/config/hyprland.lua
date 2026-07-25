@@ -16,11 +16,25 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-    output   = "",
+    output   = "eDP-1",
     mode     = "1920x1080@165",
-    position = "auto",
+    position = "0x0",
     scale    = "1",
 })
+
+
+-- for office projector lol
+hl.monitor({
+    output   = "HDMI-A-2",
+    mode     = "highres",
+    position = "auto",
+    scale    = "1",
+    reserved_area = { top = 25, bottom = 25, left = 50, right = 50 }
+
+
+})
+
+
 
 
 ---------------------
@@ -47,7 +61,8 @@ local browser     = "firefox"
 hl.exec_cmd("hyprpaper")
 hl.exec_cmd("ashell")
 hl.exec_cmd("polkit-kde-authentication-agent-1")
-   --   hl.exec_cmd(terminal)
+hl.exec_cmd("hypridle")
+--   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
 end)
 
@@ -62,6 +77,11 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("KDE_SESSION_VERSION", "6")
+hl.env("XDG_MENU_PREFIX", "plasma-")
+
+hl.env("AQ_DRM_DEVICES", "/dev/dri/card0:/dev/dri/card1")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
 
 -----------------------
@@ -90,8 +110,8 @@ hl.env("KDE_SESSION_VERSION", "6")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  =0 ,
-        gaps_out = 0,
+        gaps_in  =5 ,
+        gaps_out = 5,
 
         border_size = 1,
 
@@ -110,8 +130,8 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 0,
-        rounding_power = 0,
+        rounding       = 10,
+        rounding_power = 10,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
@@ -222,7 +242,7 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "us",
+        kb_layout  = "",
         kb_variant = "",
         kb_model   = "",
         kb_options = "",
@@ -278,6 +298,11 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+
+--fullscreen toggle 
+hl.bind("SUPER + F", hl.dsp.window.fullscreen("fullscreen", "toggle"))
+
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
