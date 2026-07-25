@@ -17,53 +17,51 @@ in
   home.homeDirectory = "/home/protikbruhh";
   home.stateVersion = "26.05";
 
-services.kdeconnect.enable = true;
-
-
 home.packages = with pkgs; [
-spotify
-niri
-steam-run
-mesa-demos
-postman
-btop
-brightnessctl
-wlogout
+    spotify
+    steam-run
+    mesa-demos
+    postman
+    btop
+    wlogout
     discord
     firefox-devedition
     grim
     htop
     hyprlauncher
-    kdePackages.kate
     kitty
     neovim
+    niri
     opencode
     ripgrep
     slurp
     swappy
     vim
-    wl-clipboard
+    mpv
     yazi
     zathura
     antigravity
-fd
-    # Fonts for status bar icons and emoji
-    nerd-fonts.jetbrains-mono
-    noto-fonts-color-emoji
-    rofi
-    rofi-bluetooth
-    networkmanager_dmenu
-brave
-
-];
+    fd
+    brave
+  ];
 
 
 
   fonts.fontconfig.enable = true;
 
-  home.activation.rebuildKDECache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
-  '';
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = [ "dolphin.desktop" ];
+      "text/plain" = [ "nvim.desktop" ];
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/webm" = [ "mpv.desktop" ];
+      "video/x-matroska" = [ "mpv.desktop" ];
+      "application/pdf" = [ "zathura.desktop" ];
+      "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+      "audio/mpeg" = [ "spotify.desktop" ];
+    };
+  };
 
   programs.home-manager.enable = true;
 

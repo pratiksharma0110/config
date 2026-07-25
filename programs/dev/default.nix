@@ -22,8 +22,14 @@ in
 
     # Dart
     dart
-python3
+    python3
 
+    # Java
+    jdk21
+    jre
+
+    # Utilities
+    unzip
 ];
 
   programs.git = {

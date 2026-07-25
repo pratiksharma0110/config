@@ -14,5 +14,8 @@
         "extract"
       ];
     };
+    shellAliases = {
+      nix-update = "sudo nixos-rebuild switch --flake /etc/nixos#nixOS";
+    };
   };
 }

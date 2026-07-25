@@ -64,8 +64,19 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  # Enable greetd display manager for Hyprland
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+
+  # KDE Plasma desktop - required for Dolphin/Okular to work (KIO workers, MIME handling)
+  # Plasma shell won't start on Hyprland session, only libraries are available
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -116,6 +127,8 @@ programs.hyprland = {
   
   };
 
+  programs.niri.enable = true;
+
   programs.zsh.enable = true;
 
   # Allow unfree packages
@@ -154,9 +167,9 @@ services.blueman.enable = true;
     };
   };
 
-  xdg.menus.enable = true;
-
   security.polkit.enable = true;
+
+  xdg.menus.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -170,22 +183,12 @@ services.blueman.enable = true;
 
   environment.systemPackages = with pkgs; [
     # keep minimal system-level tools here if needed
-    
-  qt6.qtdeclarative
-    jdk21
-jre
-    unzip
-    git
-    hyprpaper
-    kdePackages.dolphin
     kdePackages.kservice
-    kdePackages.polkit-kde-agent-1
-    (writeShellScriptBin "nix-update" "sudo nixos-rebuild switch --flake /etc/nixos#nixOS")
   ];
 
   environment.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "KDE";
-    XDG_MENU_PREFIX = "plasma-";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    NIXOS_OZONE_WL = "1";
   };
 
   virtualisation.docker = {
@@ -194,10 +197,7 @@ jre
 
 
 
-  environment.etc."xdg/kdeglobals".text = ''
-    [General]
-    TerminalApplication=kitty
-  '';
+  programs.kdeconnect.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

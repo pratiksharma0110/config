@@ -10,11 +10,12 @@
   xdg.configFile."hypr/hyprlock.conf".source = ./config/hyprlock.conf;
 
   home.packages = with pkgs; [
-hypridle
-pavucontrol
+    hypridle
+    hyprlock
+    hyprpaper
+    pavucontrol
     wl-screenrec
     awww
-    wl-clipboard
     cliphist
     jq
     socat
@@ -24,11 +25,9 @@ pavucontrol
     iw
     bluez
     libnotify
-    networkmanager
     lm_sensors
     bc
     imagemagick
-    hyprlock
   ];
 
   services.hypridle = {
@@ -53,6 +52,4 @@ pavucontrol
       ];
     };
   };
-
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
 }
