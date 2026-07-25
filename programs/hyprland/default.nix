@@ -34,10 +34,10 @@
     enable = true;
     settings = {
       general = {
-        lock_cmd = "hyprlock";
-        unlock_cmd = "killall -SIGUSR2 hyprlock";
-        before_sleep_cmd = "hyprlock";
-        after_sleep_cmd = "";
+      lock_cmd = "hyprlock";
+      unlock_cmd = "killall -SIGUSR2 hyprlock";
+      before_sleep_cmd = "hyprlock";
+      after_sleep_cmd = "hyprctl dispatch dpms on";
       };
       listener = [
         {

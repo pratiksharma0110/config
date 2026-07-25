@@ -61,6 +61,11 @@
 
         custom_buttons = [
           {
+            icon = "\u{f0f3}";
+            label = "Notif";
+            on_click = "swaync-client -t -sw";
+          }
+          {
             icon = "\u{f1f2}";
             label = "DND";
             status_cmd = "swaync-client --get-dnd | grep -q true && echo On || echo Off";

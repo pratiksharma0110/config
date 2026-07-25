@@ -12,7 +12,6 @@
     ];
 
   home-manager.backupFileExtension = ".backup";
-  home-manager.users.protikbruhh = import ./home.nix;
 
   # Bootloader.
  
@@ -173,6 +172,7 @@ services.blueman.enable = true;
     # keep minimal system-level tools here if needed
     kdePackages.kservice
     bibata-cursors
+    sound-theme-freedesktop
   ];
 
   environment.sessionVariables = {

@@ -1,8 +1,70 @@
 { config, pkgs, lib, ... }: {
   services.swaync = {
     enable = true;
-  };
 
-  xdg.configFile."swaync/config.json".source = ./config.json;
-  xdg.configFile."swaync/style.css".source = ./style.css;
+    settings = {
+      positionX = "right";
+      positionY = "top";
+      layer = "top";
+      control-center-layer = "top";
+      layer-shell = true;
+      cssPriority = "user";
+      control-center-margin-top = 10;
+      control-center-margin-bottom = 10;
+      control-center-margin-right = 10;
+      control-center-margin-left = 0;
+      notification-2fa-action = true;
+      notification-inline-replies = false;
+      notification-body-image-height = 100;
+      notification-body-image-width = 200;
+      timeout = 10;
+      timeout-low = 5;
+      timeout-critical = 0;
+      fit-to-screen = true;
+      relative-timestamps = true;
+      control-center-width = 400;
+      control-center-height = 600;
+      notification-window-width = 400;
+      keyboard-shortcuts = true;
+      image-visibility = "image";
+      transition-time = 200;
+
+      widgets = [
+        "inhibitors"
+        "title"
+        "dnd"
+        "history"
+        "notifications"
+      ];
+
+      scripts = {
+        notification-sound = {
+          exec = "mpv --no-video --really-quiet /run/current-system/sw/share/sounds/freedesktop/stereo/message.oga";
+        };
+      };
+
+      widget-config = {
+        title = {
+          text = "Notifications";
+          clear-all-button = true;
+          button-text = "Clear All";
+        };
+        dnd = {
+          text = "Do Not Disturb";
+        };
+        inhibitors = {
+          text = "Inhibitor";
+          active-text = "Active";
+          inactive-text = "Inactive";
+        };
+        history = {
+          text = "History";
+          clear-all-button = true;
+          button-text = "Clear All";
+        };
+      };
+    };
+
+    style = ./style.css;
+  };
 }

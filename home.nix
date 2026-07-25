@@ -11,8 +11,6 @@ in
 {
   imports = programImports;
 
-  nixpkgs.config.allowUnfree = true;
-
   home.username = "protikbruhh";
   home.homeDirectory = "/home/protikbruhh";
   home.stateVersion = "26.05";
@@ -44,6 +42,7 @@ in
     kitty
     neovim
     opencode
+    quickshell
     ripgrep
     slurp
     swappy
@@ -71,6 +70,13 @@ in
       "application/pdf" = [ "zathura.desktop" ];
       "x-scheme-handler/spotify" = [ "spotify.desktop" ];
       "audio/mpeg" = [ "spotify.desktop" ];
+
+      #browser shits 
+       "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
     };
   };
 

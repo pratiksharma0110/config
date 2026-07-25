@@ -402,15 +402,10 @@ hl.window_rule({
     float = true,
 })
 
-hl.layer_rule({
-    name  = "swaync-blur",
-    match = { namespace = "swaync-control-center" },
-    blur  = true,
-})
-
-hl.layer_rule({
-    name  = "swaync-notif-blur",
-    match = { namespace = "swaync-notification-window" },
-    blur  = true,
-})
+-- layer rules for swaync (no blur)
+-- hl.layer_rule({
+--     name  = "swaync-notif-blur",
+--     match = { namespace = "swaync-notification-window" },
+--     blur  = true,
+-- })
 
