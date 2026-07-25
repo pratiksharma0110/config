@@ -339,6 +339,12 @@ hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl set 5%-"), { lock
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
+-- DND toggle
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -d -sw"))
+
+-- Notification center toggle
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
+
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
@@ -394,5 +400,17 @@ hl.window_rule({
 
     move  = "20 monitor_h-120",
     float = true,
+})
+
+hl.layer_rule({
+    name  = "swaync-blur",
+    match = { namespace = "swaync-control-center" },
+    blur  = true,
+})
+
+hl.layer_rule({
+    name  = "swaync-notif-blur",
+    match = { namespace = "swaync-notification-window" },
+    blur  = true,
 })
 

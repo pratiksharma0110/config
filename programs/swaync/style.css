@@ -1,0 +1,209 @@
+@define-color bg #1d1f28;
+@define-color bgAlpha #1d1f28cc;
+@define-color fg #cdd6f4;
+@define-color accent #c084fc;
+@define-color accentLow #89dceb;
+@define-color accentCritical #f87171;
+@define-color border #c084fc;
+@define-color close #f87171;
+
+/* Global */
+* {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Notification window */
+.floating-notifications {
+  background: transparent;
+}
+
+.notification {
+  background: @bgAlpha;
+  border: 2px solid @border;
+  border-radius: 15px;
+  padding: 14px;
+  margin: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.notification-content {
+  padding: 4px;
+}
+
+.close-button {
+  background: @close;
+  color: @fg;
+  border-radius: 10px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 4px;
+  margin: 4px;
+}
+
+.close-button:hover {
+  background: shade(@close, 1.2);
+}
+
+.body {
+  color: @fg;
+  margin-top: 4px;
+}
+
+.summary {
+  color: @fg;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.app-name {
+  color: @accent;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.time {
+  color: shade(@fg, 0.6);
+  font-size: 11px;
+}
+
+/* Actions */
+.actions {
+  margin-top: 8px;
+}
+
+.action-button {
+  background: @accent;
+  color: @bg;
+  border-radius: 10px;
+  padding: 6px 16px;
+  margin: 2px;
+  font-weight: bold;
+}
+
+.action-button:hover {
+  background: shade(@accent, 1.2);
+}
+
+/* Urgency */
+.notification.critical {
+  border-color: @accentCritical;
+}
+
+/* Image */
+.notification-image {
+  border-radius: 10px;
+}
+
+/* Progress bar */
+.progress-bar {
+  background: shade(@bg, 0.8);
+  border-radius: 8px;
+  min-height: 12px;
+}
+
+.progress-bar-image {
+  border-radius: 8px;
+}
+
+/* Control center */
+.control-center {
+  background: @bgAlpha;
+  border: 2px solid @border;
+  border-radius: 15px;
+  padding: 12px;
+  margin: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Title widget */
+.widget-title {
+  padding: 8px 12px;
+}
+
+.widget-title label {
+  color: @fg;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.widget-title button {
+  background: @accent;
+  color: @bg;
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-weight: bold;
+}
+
+.widget-title button:hover {
+  background: shade(@accent, 1.2);
+}
+
+/* DND widget */
+.widget-dnd {
+  padding: 8px 12px;
+}
+
+.widget-dnd label {
+  color: @fg;
+  font-size: 14px;
+}
+
+.widget-dnd switch {
+  border-radius: 15px;
+  min-width: 40px;
+  min-height: 22px;
+  background: shade(@bg, 0.7);
+}
+
+.widget-dnd switch:checked {
+  background: @accent;
+}
+
+.widget-dnd switch slider {
+  border-radius: 50%;
+  min-width: 18px;
+  min-height: 18px;
+  background: @fg;
+}
+
+/* Inhibitor widget */
+.widget-inhibitors {
+  padding: 8px 12px;
+}
+
+.widget-inhibitors label {
+  color: @fg;
+}
+
+/* Notifications list in control center */
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list .notification-row {
+  margin: 4px 0;
+}
+
+.control-center-list .notification {
+  background: shade(@bg, 0.9);
+  border: 1px solid shade(@border, 0.6);
+  border-radius: 12px;
+}
+
+/* Scrollbar */
+scrollbar,
+scrollbar slider {
+  background: transparent;
+  border-radius: 10px;
+  min-width: 6px;
+}
+
+scrollbar slider {
+  background: shade(@fg, 0.4);
+}
+
+scrollbar slider:hover {
+  background: @accent;
+}

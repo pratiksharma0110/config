@@ -58,6 +58,15 @@
           "Battery"
           "Brightness"
         ];
+
+        custom_buttons = [
+          {
+            icon = "\u{f1f2}";
+            label = "DND";
+            status_cmd = "swaync-client --get-dnd | grep -q true && echo On || echo Off";
+            on_click = "swaync-client -d -sw";
+          }
+        ];
       };
 
       appearance = {
