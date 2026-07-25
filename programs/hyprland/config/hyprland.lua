@@ -59,7 +59,7 @@ local browser     = "firefox"
 --
  hl.on("hyprland.start", function () 
 hl.exec_cmd("hyprpaper")
-hl.exec_cmd("ashell")
+hl.exec_cmd("quickshell")
 hl.exec_cmd("polkit-kde-authentication-agent-1")
 hl.exec_cmd("hypridle")
 --   hl.exec_cmd(terminal)
