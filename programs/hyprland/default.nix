@@ -42,7 +42,7 @@
       listener = [
         {
           timeout = 60;
-          on-timeout = "hyprlock";
+          on-timeout = "noctalia msg session lock";
         }
         {
           timeout = 600;

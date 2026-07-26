@@ -28,6 +28,7 @@ in
       esac
     '')
   ] ++ (with pkgs; [
+  qt6.qt5compat
     spotify
     steam-run
     mesa-demos

@@ -1,3 +1,0 @@
-module Module
-singleton Colors Colors.qml
-Bar Bar.qml

@@ -44,7 +44,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "dolphin"
-local menu        = "rofi -show drun"
+local menu        = "noctalia msg panel-toggle launcher"
 local browser     = "firefox"
 
 
@@ -59,7 +59,7 @@ local browser     = "firefox"
 --
  hl.on("hyprland.start", function () 
 hl.exec_cmd("hyprpaper")
-hl.exec_cmd("quickshell")
+hl.exec_cmd("noctalia")
 hl.exec_cmd("polkit-kde-authentication-agent-1")
 hl.exec_cmd("hypridle")
 --   hl.exec_cmd(terminal)
@@ -111,8 +111,8 @@ hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  =5 ,
-        gaps_out = 5,
+        gaps_in  =2 ,
+        gaps_out = 2,
 
         border_size = 1,
 
@@ -314,8 +314,8 @@ for i = 1, 10 do
 end
 
 -- Screenshots with grim, slurp, and swappy
-hl.bind("Print", hl.dsp.exec_cmd("grim - | swappy -f -"))
-hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | swappy -f -"))
+
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
@@ -337,7 +337,7 @@ hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl set 5%+"),  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
 
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 
 -- DND toggle
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -d -sw"))

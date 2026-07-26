@@ -115,6 +115,12 @@ programs.hyprland = {
   
   };
 
+# Noctalia configuration
+  programs.noctalia = {
+    enable = true;
+    # This automatically enables required services: NetworkManager, Bluetooth, UPower, and power-profiles-daemon.
+    recommendedServices.enable = true; 
+  };
 
   programs.zsh.enable = true;
 
