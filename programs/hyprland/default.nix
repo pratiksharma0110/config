@@ -7,7 +7,6 @@
   };
 
   xdg.configFile."hypr/hyprland.lua".source = ./config/hyprland.lua;
-  xdg.configFile."hypr/hyprlock.conf".source = ./config/hyprlock.conf;
 
   home.packages = with pkgs; [
     hypridle
@@ -34,7 +33,7 @@
     enable = true;
     settings = {
       general = {
-      lock_cmd = "hyprlock";
+      lock_cmd = "noctalia msg session lock";
       unlock_cmd = "killall -SIGUSR2 hyprlock";
       before_sleep_cmd = "hyprlock";
       after_sleep_cmd = "hyprctl dispatch dpms on";

@@ -22,9 +22,11 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };
+
+    qml-language-server.url = "github:cushycush/qml-language-server";
   };
 
-  outputs = { self, nixpkgs, home-manager, quickshell, noctalia, ... }: {
+  outputs = { self, nixpkgs, home-manager, quickshell, noctalia, ... }@inputs: {
     nixosConfigurations.nixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -39,6 +41,7 @@
 
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
 
           home-manager.users.protikbruhh = import ./home.nix;
         }

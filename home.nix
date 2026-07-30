@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   programsDir = ./programs;
@@ -40,11 +40,14 @@ in
     grim
     htop
     hyprlauncher
+    alacritty
     kitty
     neovim
     opencode
     quickshell
-    ripgrep
+   qt6.qttools 
+  tree-sitter
+  ripgrep
     slurp
     swappy
     vim
@@ -54,6 +57,7 @@ in
     antigravity
     fd
     brave
+    inputs.qml-language-server.packages.${pkgs.system}.default
   ]);
 
 

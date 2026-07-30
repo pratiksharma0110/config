@@ -20,6 +20,8 @@ in
     # Go
     go
 
+zed-editor
+
     # Dart
     dart
     python3
@@ -30,6 +32,31 @@ in
 
     # Utilities
     unzip
+
+
+#lsp 
+    # Python
+  pyright
+  ruff
+  
+  # Go
+  gopls
+  gotools
+  gofumpt
+  
+  # C/C++
+  clang-tools # (provides clangd)
+
+  qt6.qtdeclarative
+  
+  # Web / JS / TS
+  typescript-language-server
+  vscode-langservers-extracted # (provides jsonls, html, eslint, etc.)
+  
+  # General formatting / Shell
+  stylua
+  shellcheck
+  shfmt
 ];
 
   programs.git = {
