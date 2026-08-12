@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./dam-fan-controls.nix
     ];
 
   home-manager.backupFileExtension = ".backup";
@@ -29,6 +30,20 @@
 
   boot.loader.efi.canTouchEfiVariables = true;
 
+services.xserver.desktopManager.xfce.enable = true;
+
+
+
+services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "db" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+       # TYPE  DATABASE  USER  ADDRESS       METHOD
+    local   all       all                 trust
+    host    all       all   127.0.0.1/32  trust
+    host    all       all   ::1/128       trust
+   '';
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -72,6 +87,12 @@
     layout = "us";
     variant = "";
   };
+
+
+
+
+  
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -178,7 +199,8 @@ services.blueman.enable = true;
     # keep minimal system-level tools here if needed
     kdePackages.kservice
     bibata-cursors
-    sound-theme-freedesktop
+   linux-wifi-hotspot
+  sound-theme-freedesktop
   ];
 
   environment.sessionVariables = {

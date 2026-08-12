@@ -39,14 +39,16 @@ in
     firefox-devedition
     grim
     htop
-    hyprlauncher
-    alacritty
+    
+    
     kitty
+    foot
     neovim
     opencode
     quickshell
    qt6.qttools 
   tree-sitter
+  ffmpeg
   ripgrep
     slurp
     swappy

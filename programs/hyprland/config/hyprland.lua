@@ -18,20 +18,16 @@
 hl.monitor({
     output   = "eDP-1",
     mode     = "1920x1080@165",
-    position = "0x0",
+    position = "1920x0",
     scale    = "1",
 })
 
 
--- for office projector lol
 hl.monitor({
     output   = "HDMI-A-2",
     mode     = "highres",
-    position = "auto",
+    position = "0x0",
     scale    = "1",
-    reserved_area = { top = 25, bottom = 25, left = 50, right = 50 }
-
-
 })
 
 
@@ -278,7 +274,7 @@ hl.device({
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
-
+local altMod = "ALT"
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
@@ -312,6 +308,23 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
+
+-- Workspaces 11-20 → eDP-1
+for i = 11, 20 do
+    local key = i % 10 
+    hl.bind(altMod .. " +  " .. key, hl.dsp.focus({ workspace = i }))
+    hl.bind(altMod .. " + SHIFT + " .. key,         hl.dsp.window.move({ workspace = i }))
+end
+
+for i = 1, 10 do
+    hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-2", default = (i == 1) })
+end
+
+-- Bind workspaces 11-20 to eDP-1
+for i = 11, 20 do
+    hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", default = (i == 11) })
+end
+
 
 -- Screenshots with grim, slurp, and swappy
 
