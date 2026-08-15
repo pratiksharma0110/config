@@ -26,7 +26,9 @@
     qml-language-server.url = "github:cushycush/qml-language-server";
   };
 
-  outputs = { self, nixpkgs, home-manager, quickshell, noctalia, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, quickshell, noctalia, ... }@inputs: let
+    pkgs = nixpkgs.legacyPackages."x86_64-linux";
+  in {
     nixosConfigurations.nixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -46,6 +48,20 @@
           home-manager.users.protikbruhh = import ./home.nix;
         }
       ];
+    };
+
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      buildInputs = [
+        pkgs.nodejs
+        pkgs.pnpm
+        pkgs.prisma
+        pkgs.prisma-engines
+        pkgs.openssl
+      ];
+
+      env = {
+        PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
+      };
     };
   };
 }

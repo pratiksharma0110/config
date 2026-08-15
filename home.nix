@@ -59,6 +59,7 @@ in
     antigravity
     fd
     brave
+    prisma
     inputs.qml-language-server.packages.${pkgs.system}.default
   ]);
 

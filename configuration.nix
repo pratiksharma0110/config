@@ -9,7 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./dam-fan-controls.nix
+   
     ];
 
   home-manager.backupFileExtension = ".backup";
@@ -153,6 +153,8 @@ programs.hyprland = {
     enable = true;
     enable32Bit = true;
   };
+
+
 
   hardware.bluetooth = {
   enable = true;
